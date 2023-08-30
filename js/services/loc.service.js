@@ -4,6 +4,7 @@ export const locService = {
   removeLoc,
   getLocById,
   getCurrLocation,
+  getCoordsFromAddress,
 };
 
 const STORAGE_KEY = "locationDB";
@@ -70,4 +71,16 @@ function getCurrLocation(cb) {
   } else {
     console.log("geolocation is noa available");
   }
+}
+
+function getCoordsFromAddress(val, cb1) {
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${val}&key=AIzaSyCa-yX9Dcvs1QyNTfha4cLWDO5BYLUIWd8`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      const lat = data.results[0].geometry.location.lat;
+      const lng = data.results[0].geometry.location.lng;
+      cb1(lat, lng);
+      saveLocation(lat, lng, val);
+    });
 }

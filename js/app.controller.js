@@ -8,6 +8,7 @@ window.onGetUserPos = onGetUserPos;
 window.onRemoveLoc = onRemoveLoc;
 window.onPanLoc = onPanLoc;
 window.onMyLocation = onMyLocation;
+window.onSearchInput = onSearchInput;
 
 function onInit() {
   mapService
@@ -101,4 +102,7 @@ function onPanLoc(elBtn) {
 }
 function onMyLocation() {
   locService.getCurrLocation(onPanTo);
+}
+function onSearchInput(val) {
+  locService.getCoordsFromAddress(val, onPanTo);
 }
