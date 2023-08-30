@@ -52,19 +52,18 @@ function onGetLocs() {
       var strHtml = locs.map(
         (loc) =>
           `
-        <pre> 
-        <p class="locs">
-        name: ${loc.name}
-        address:${loc.address}
-        lat:${loc.lat}
-        lng:${loc.lng}
-        id:${loc.id}
-        created at:${loc.createdAt}
-        update at:${loc.updateAt}
-        </p>
-        <button data-id="${loc.id}" onclick="onRemoveLoc(this)" class="remove">Remove</button>
+        <tr> 
+        <td>${loc.name}</td>
+        <td>${loc.address}</td>
+        <td>${loc.lat}</td>
+        <td>${loc.lng}</td>
+        <td>${loc.id}</td>
+        <td>${loc.createdAt}</td>
+        <td>${loc.updateAt}</td>
+        <td><button data-id="${loc.id}" onclick="onRemoveLoc(this)" class="remove">Remove</button>
         <button data-id="${loc.id}" onclick="onPanLoc(this)" class="pan">Pan</button>
-    </pre>
+        </td>
+    </tr>
         `
       );
       return strHtml;

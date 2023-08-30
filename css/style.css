@@ -1,0 +1,7 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+.locations-table, td, th {
+    border: 1px solid black;
+}
