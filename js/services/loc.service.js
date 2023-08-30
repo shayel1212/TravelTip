@@ -20,7 +20,7 @@ function getLocs() {
 }
 console.log(locs);
 
-function saveLocation(lng, lat, name) {
+function saveLocation(lat, lng, name) {
   console.log(lat, lng);
   fetch(
     `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyCa-yX9Dcvs1QyNTfha4cLWDO5BYLUIWd8`
@@ -69,7 +69,7 @@ function getCurrLocation(cb) {
       cb(lat, lng);
     });
   } else {
-    console.log("geolocation is noa available");
+    console.log("geolocation is not available");
   }
 }
 
@@ -78,6 +78,7 @@ function getCoordsFromAddress(val, cb1) {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
+      console.log(data.results)
       const lat = data.results[0].geometry.location.lat;
       const lng = data.results[0].geometry.location.lng;
       cb1(lat, lng);

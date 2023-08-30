@@ -47,7 +47,7 @@ function onGetLocs() {
   locService
     .getLocs()
     .then((locs) => {
-      // console.log("Locations:", locs);
+      console.log("Locations:", locs);
       // document.querySelector(".locs").innerText = JSON.stringify(locs, null, 2);
       var strHtml = locs.map(
         (loc) =>
@@ -93,11 +93,14 @@ function onGetUserPos() {
 }
 function onPanTo(lat = 35.6895, lng = 139.6917) {
   console.log("Panning the Map");
+  console.log(lat)
+  console.log(lng)
   mapService.panTo(lat, lng);
 }
 
 function onPanLoc(elBtn) {
-  const { lng, lat } = locService.getLocById(elBtn.dataset.id);
+  const { lat, lng } = locService.getLocById(elBtn.dataset.id);
+  console.log(lat,lng)
   onPanTo(lat, lng);
 }
 function onMyLocation() {
