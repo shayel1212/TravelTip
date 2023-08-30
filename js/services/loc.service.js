@@ -3,6 +3,7 @@ export const locService = {
   saveLocation,
   removeLoc,
   getLocById,
+  getCurrLocation,
 };
 
 const STORAGE_KEY = "locationDB";
@@ -25,7 +26,7 @@ function saveLocation(lng, lat, name) {
   )
     .then((res) => res.json())
     .then((data) => {
-      console.log('data',data)
+      console.log("data", data);
       return {
         id: data.results[0].place_id,
         address: data.results[0].formatted_address,
@@ -53,7 +54,20 @@ function removeLoc(id) {
   locs.splice(locIdx, 1);
   saveToLocalStorage(STORAGE_KEY, locs);
 }
-function getLocById(id){
-  return locs.find((loc) => loc.id === id)
+function getLocById(id) {
+  return locs.find((loc) => loc.id === id);
+}
 
+function getCurrLocation(cb) {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      console.log(pos);
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      console.log(lat, lng);
+      cb(lat, lng);
+    });
+  } else {
+    console.log("geolocation is noa available");
+  }
 }
