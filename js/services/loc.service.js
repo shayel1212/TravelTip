@@ -2,6 +2,7 @@ export const locService = {
   getLocs,
   saveLocation,
   removeLoc,
+  getLocById,
 };
 
 const STORAGE_KEY = "locationDB";
@@ -24,6 +25,7 @@ function saveLocation(lng, lat, name) {
   )
     .then((res) => res.json())
     .then((data) => {
+      console.log('data',data)
       return {
         id: data.results[0].place_id,
         address: data.results[0].formatted_address,
@@ -50,4 +52,8 @@ function removeLoc(id) {
   const locIdx = locs.findIndex((loc) => loc.id === id);
   locs.splice(locIdx, 1);
   saveToLocalStorage(STORAGE_KEY, locs);
+}
+function getLocById(id){
+  return locs.find((loc) => loc.id === id)
+
 }

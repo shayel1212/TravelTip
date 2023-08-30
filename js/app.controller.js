@@ -6,6 +6,7 @@ window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.onRemoveLoc = onRemoveLoc;
+window.onPanLoc = onPanLoc;
 
 function onInit() {
   mapService
@@ -88,7 +89,13 @@ function onGetUserPos() {
       console.log("err!!!", err);
     });
 }
-function onPanTo() {
+function onPanTo(lat =35.6895,lng=139.6917) {
   console.log("Panning the Map");
-  mapService.panTo(35.6895, 139.6917);
+  mapService.panTo(lat,lng);
+}
+
+function onPanLoc(elBtn){
+   const {lng,lat} = locService.getLocById(elBtn.dataset.id)
+   onPanTo(lat, lng)
+  
 }
