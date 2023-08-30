@@ -2,6 +2,72 @@
     box-sizing: border-box;
     margin: 0;
 }
+body{
+    background-color: rgb(35, 35, 35);
+    color: whitesmoke;
+}
 .locations-table, td, th {
     border: 1px solid black;
+}
+.header{
+    height: 100px;
+    align-items: center;
+
+}
+
+.header .search-input{
+    height: 60%;
+    width: 30%;
+    margin-inline-end: 35%;
+
+}
+.main-layout{
+    height: 800px;
+    width: 100%;
+    border: 2px solid black;
+    justify-content: center;
+
+}
+.main-layout .locations-table{
+    max-width: 100%;
+    width: 50%;
+    align-self: start;
+    margin-inline-end: 400px;
+}
+.main-layout .map{
+    margin-inline-start: 10%;
+}
+.user-location{
+    text-align: center;
+    font-size: 1.5rem;
+}
+.button-box{
+    position: absolute;
+    height: 75px;
+    text-align: center;
+    border: 1px solid black;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    
+}
+
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
 }

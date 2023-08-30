@@ -18,6 +18,9 @@ function onInit() {
       mapService.initMapListener(handleMapClick);
     })
     .catch(() => console.log("Error: cannot init map"));
+    onGetUserPos()
+    onGetLocs()
+    
 }
 
 function handleMapClick(clickedLocation) {
@@ -73,7 +76,6 @@ function onGetLocs() {
     });
 }
 function onRemoveLoc(elBtn) {
-  //   console.log(elBtn.dataset.id);
   locService.removeLoc(elBtn.dataset.id);
   onGetLocs();
 }
@@ -83,7 +85,7 @@ function onGetUserPos() {
     .then((pos) => {
       console.log("User position is:", pos.coords);
       document.querySelector(
-        ".user-pos"
+        ".user-pos "
       ).innerText = `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`;
     })
     .catch((err) => {
@@ -92,14 +94,11 @@ function onGetUserPos() {
 }
 function onPanTo(lat = 35.6895, lng = 139.6917) {
   console.log("Panning the Map");
-  console.log(lat)
-  console.log(lng)
   mapService.panTo(lat, lng);
 }
 
 function onPanLoc(elBtn) {
   const { lat, lng } = locService.getLocById(elBtn.dataset.id);
-  console.log(lat,lng)
   onPanTo(lat, lng);
 }
 function onMyLocation() {
@@ -107,4 +106,6 @@ function onMyLocation() {
 }
 function onSearchInput(val) {
   locService.getCoordsFromAddress(val, onPanTo);
+  onGetLocs()
+
 }
